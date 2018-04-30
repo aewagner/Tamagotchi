@@ -35,3 +35,51 @@ function DigitalPal(hungry, sleepy, bored, age) {
         this.age++;
     }
 }
+
+let animals = {};
+
+animals.dog = new DigitalPal(true, false, true, 3);
+
+animals.dog.outside = false;
+animals.dog.bark = () => { console.log(`Woof!`) };
+animals.dog.goOutside = () => {
+    if (!this.outside) {
+        console.log(`Yay! I love the outdoors!`);
+        this.outside = true;
+        this.bark();
+    } else {
+        console.log(`We're already outside though...`);
+    }
+};
+animals.dog.goInside = () => {
+    if (this.outside) {
+        console.log(`Do we have to? Fine...`);
+        this.outside = false;
+    } else {
+        console.log(`I'm already inside...`);
+    }
+};
+
+ animals.cat = new DigitalPal(true, true, true, 5);
+
+animals.cat.houseCondition = 100;
+animals.cat.meow = () => { console.log(`Meow! Meow!`) };
+animals.cat.destroyFurniture = () => {
+    if (animals.cat.houseCondition - 10 > 0) {
+        this.houseCondition -= 10;
+        console.log(`MUAHAHAHAHA! TAKE THAT FURNITURE!`);
+        this.bored = false;
+        this.sleepy = true;
+    }
+};
+animals.cat.buyNewFurniture = () => {
+    this.houseCondition += 50;
+    console.log(`Are you sure about that?`);
+}
+
+// Grabbing command line arguments for animal and method
+var animal = process.argv[2];
+var method = process.argv[3];
+
+// try calling your chosen animal and method from the terminal example: 'node tamagotchi-this dog letInside'
+animals[animal][method]();
